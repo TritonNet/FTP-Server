@@ -1,0 +1,111 @@
+﻿<Window
+    x:Class="FTPServer.DesktopClient.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="FTP Server"
+    Height="350"
+    Width="525"
+    WindowStyle="None"
+    AllowsTransparency="True"
+    WindowState="Normal"
+    MouseDoubleClick="Window_MouseDoubleClick"
+    ResizeMode="NoResize"
+    xmlns:ftpserver_desktopclient="clr-namespace:FTPServer.DesktopClient">
+    <Border
+        BorderThickness="1"
+        BorderBrush="#FF2B579A">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="30" />
+                <RowDefinition
+                    Height="*" />
+                <RowDefinition
+                    Height="25" />
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="#FF2B579A"
+                MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <TextBlock
+                    FontFamily="Segoe UI"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Text="{Binding Title, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ftpserver_desktopclient:MainWindow}}}"
+                    Margin="10,0,0,0"
+                    FontSize="15"
+                    Foreground="White" />
+
+                <!--<telerik:RadButton
+                    Name="btnClose"
+                    Background="Transparent"
+                    BorderBrush="{StaticResource subColorOne}"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Click="btnClose_Click"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0,0,3,0"
+                    Height="22"
+                    Width="22">
+                    <ContentControl
+                        Margin="4"
+                        Style="{StaticResource closeIconStyle}" />
+                </telerik:RadButton>
+
+                <telerik:RadButton
+                    Name="btnMaximize"
+                    Background="Transparent"
+                    BorderBrush="{StaticResource subColorOne}"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0,0,28,0"
+                    Height="22"
+                    Click="btnMaximize_Click"
+                    Width="22">
+                    <ContentControl
+                        Margin="4"
+                        Style="{StaticResource maximizeIconStyle}" />
+                </telerik:RadButton>
+
+                <telerik:RadButton
+                    Name="btnMinimize"
+                    Background="Transparent"
+                    BorderBrush="{StaticResource subColorOne}"
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Click="btnMinimize_Click"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0,0,53,0"
+                    Height="22"
+                    Width="22">
+                    <ContentControl
+                        Margin="4"
+                        Style="{StaticResource minimizeIconStyle}" />
+                </telerik:RadButton>-->
+            </Grid>
+
+            <Grid
+                Grid.Row="3"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Background="#FFD8D8D8">
+                <TextBlock
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="10,0,10,0"
+                    Text="{Binding Path=CopyrightMessage,Mode=OneWay}"
+                    FontSize="9"
+                    FontFamily="Segoe UI" />
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
