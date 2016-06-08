@@ -13,3 +13,6 @@ E:\Projects\Completed Projects\FTP Server\FTPServer.DesktopClient\obj\Debug\FTPS
 E:\Projects\Completed Projects\FTP Server\FTPServer.DesktopClient\obj\Debug\FTPServer.DesktopClient.csproj.GenerateResource.Cache
 E:\Projects\Completed Projects\FTP Server\FTPServer.DesktopClient\obj\Debug\FTPServer.DesktopClient.exe
 E:\Projects\Completed Projects\FTP Server\FTPServer.DesktopClient\obj\Debug\FTPServer.DesktopClient.pdb
+D:\Kushan's Personal\Projects\FTP Server\FTPServer.DesktopClient\bin\Debug\FTPServer.DesktopClient.exe.config
+D:\Kushan's Personal\Projects\FTP Server\FTPServer.DesktopClient\obj\Debug\FTPServer.DesktopClient.exe
+D:\Kushan's Personal\Projects\FTP Server\FTPServer.DesktopClient\obj\Debug\FTPServer.DesktopClient.pdb

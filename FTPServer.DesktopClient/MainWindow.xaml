@@ -94,6 +94,11 @@
             </Grid>
 
             <Grid
+                Grid.Row="1">
+                
+            </Grid>
+            
+            <Grid
                 Grid.Row="3"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
