@@ -96,7 +96,67 @@
             <Grid
                 Grid.Row="1">
                 
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="25"
+                    VerticalContentAlignment="Center"
+                    Padding="0"
+                    Margin="10,30,10,10"
+                    Content="Host IP : "/>
+                <TextBox
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="25"
+                    Margin="65,30,10,10"
+                    Width="150"/>
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="25"
+                    VerticalContentAlignment="Center"
+                    Padding="0"
+                    Margin="230,30,10,10"
+                    Content="Host Port : "/>
+                <TextBox
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="295,30,0,0"
+                    Height="25"
+                    Width="60"
+                    TextAlignment="Center"/>
+
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="25"
+                    VerticalContentAlignment="Center"
+                    Padding="0"
+                    Margin="10,60,10,10"
+                    Content="FTP Username : "/>
+                <TextBox
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="25"
+                    Margin="115,60,10,10"
+                    Width="100"/>
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="25"
+                    VerticalContentAlignment="Center"
+                    Padding="0"
+                    Margin="10,90,10,10"
+                    Content="FTP Password : "/>
+                <TextBox
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="25"
+                    Margin="115,90,10,10"
+                    Width="100"/>
             </Grid>
+            
+            
             
             <Grid
                 Grid.Row="3"
