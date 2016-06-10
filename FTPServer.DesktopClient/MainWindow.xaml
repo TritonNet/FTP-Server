@@ -3,14 +3,19 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="FTP Server"
-    Height="350"
+    Height="550"
     Width="525"
     WindowStyle="None"
     AllowsTransparency="True"
     WindowState="Normal"
     MouseDoubleClick="Window_MouseDoubleClick"
     ResizeMode="NoResize"
-    xmlns:ftpserver_desktopclient="clr-namespace:FTPServer.DesktopClient">
+    xmlns:ftpserver_desktopclient="clr-namespace:FTPServer.DesktopClient"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    Loaded="Window_Loaded" Icon="ftp_server.ico">
+    <Window.DataContext>
+        <ftpserver_desktopclient:VmMain/>
+    </Window.DataContext>
     <Border
         BorderThickness="1"
         BorderBrush="#FF2B579A">
@@ -38,10 +43,10 @@
                     FontSize="15"
                     Foreground="White" />
 
-                <!--<telerik:RadButton
+                <telerik:RadButton
                     Name="btnClose"
                     Background="Transparent"
-                    BorderBrush="{StaticResource subColorOne}"
+                    BorderBrush="LightGray"
                     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
                     Cursor="Hand"
                     BorderThickness="0"
@@ -51,51 +56,21 @@
                     Margin="0,0,3,0"
                     Height="22"
                     Width="22">
-                    <ContentControl
-                        Margin="4"
-                        Style="{StaticResource closeIconStyle}" />
+                    <Path
+                        Data="F1M54.0573,47.8776L38.1771,31.9974 54.0547,16.1198C55.7604,14.4141 55.7604,11.6511 54.0573,9.94531 52.3516,8.23962 49.5859,8.23962 47.8802,9.94531L32.0026,25.8229 16.1224,9.94531C14.4167,8.23962 11.6511,8.23962 9.94794,9.94531 8.24219,11.6511 8.24219,14.4141 9.94794,16.1198L25.8255,32 9.94794,47.8776C8.24219,49.5834 8.24219,52.3477 9.94794,54.0534 11.6511,55.7572 14.4167,55.7585 16.1224,54.0534L32.0026,38.1745 47.8802,54.0534C49.5859,55.7585 52.3516,55.7572 54.0573,54.0534 55.7604,52.3477 55.763,49.5834 54.0573,47.8776z"
+                        Stretch="Uniform"
+                        Fill="LightGray"
+                        Width="12"
+                        Height="12"
+                        Margin="0,0,0,0"
+                        RenderTransformOrigin="0.5,0.5">
+                    </Path>
                 </telerik:RadButton>
-
-                <telerik:RadButton
-                    Name="btnMaximize"
-                    Background="Transparent"
-                    BorderBrush="{StaticResource subColorOne}"
-                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                    Cursor="Hand"
-                    BorderThickness="0"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Margin="0,0,28,0"
-                    Height="22"
-                    Click="btnMaximize_Click"
-                    Width="22">
-                    <ContentControl
-                        Margin="4"
-                        Style="{StaticResource maximizeIconStyle}" />
-                </telerik:RadButton>
-
-                <telerik:RadButton
-                    Name="btnMinimize"
-                    Background="Transparent"
-                    BorderBrush="{StaticResource subColorOne}"
-                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                    Cursor="Hand"
-                    BorderThickness="0"
-                    Click="btnMinimize_Click"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Margin="0,0,53,0"
-                    Height="22"
-                    Width="22">
-                    <ContentControl
-                        Margin="4"
-                        Style="{StaticResource minimizeIconStyle}" />
-                </telerik:RadButton>-->
             </Grid>
 
             <Grid
                 Grid.Row="1">
-                
+
                 <Label
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
@@ -103,28 +78,54 @@
                     VerticalContentAlignment="Center"
                     Padding="0"
                     Margin="10,30,10,10"
-                    Content="Host IP : "/>
+                    Content="Server Name : "
+                    Style="{StaticResource nameLabelStyle}"/>
                 <TextBox
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
+                    Margin="95,30,0,0"
                     Height="25"
-                    Margin="65,30,10,10"
-                    Width="150"/>
+                    Width="260"                    
+                    Text="{Binding Path=FtpServerName,Mode=TwoWay}"
+                    IsEnabled="{Binding Path=IsAlterationEnabled}"/>
+                
                 <Label
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Height="25"
                     VerticalContentAlignment="Center"
                     Padding="0"
-                    Margin="230,30,10,10"
-                    Content="Host Port : "/>
+                    Margin="10,70,10,10"
+                    Content="Host IP : "
+                    Style="{StaticResource nameLabelStyle}"/>
+                <telerik:RadComboBox
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="25"
+                    Margin="65,70,10,10"
+                    Width="150"
+                    IsEditable="True"
+                    ItemsSource="{Binding Path=HostIpCollection}"
+                    SelectedValue="{Binding Path=HostIP}"
+                    IsEnabled="{Binding Path=IsAlterationEnabled}"/>
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="25"
+                    VerticalContentAlignment="Center"
+                    Padding="0"
+                    Margin="230,70,10,10"
+                    Content="Host Port : "
+                    Style="{StaticResource nameLabelStyle}"/>
                 <TextBox
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Margin="295,30,0,0"
+                    Margin="295,70,0,0"
                     Height="25"
                     Width="60"
-                    TextAlignment="Center"/>
+                    TextAlignment="Center"
+                    Text="{Binding Path=HostPort,Mode=TwoWay}"
+                    IsEnabled="{Binding Path=IsAlterationEnabled}"/>
 
                 <Label
                     HorizontalAlignment="Left"
@@ -132,32 +133,134 @@
                     Height="25"
                     VerticalContentAlignment="Center"
                     Padding="0"
-                    Margin="10,60,10,10"
-                    Content="FTP Username : "/>
+                    Margin="10,100,10,10"
+                    Content="FTP Username : "
+                    Style="{StaticResource nameLabelStyle}"/>
                 <TextBox
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Height="25"
-                    Margin="115,60,10,10"
-                    Width="100"/>
+                    Margin="115,100,10,10"
+                    Width="100"
+                    Text="{Binding Path=FtpUsername,Mode=TwoWay}"
+                    IsEnabled="{Binding Path=IsAlterationEnabled}"/>
                 <Label
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Height="25"
                     VerticalContentAlignment="Center"
                     Padding="0"
-                    Margin="10,90,10,10"
-                    Content="FTP Password : "/>
+                    Margin="10,130,10,10"
+                    Content="FTP Password : "
+                    Style="{StaticResource nameLabelStyle}"/>
                 <TextBox
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Height="25"
-                    Margin="115,90,10,10"
-                    Width="100"/>
+                    Margin="115,130,10,10"
+                    Width="100"
+                    Text="{Binding Path=FtpPassword,Mode=TwoWay}"
+                    IsEnabled="{Binding Path=IsAlterationEnabled}"/>
+
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="25"
+                    VerticalContentAlignment="Center"
+                    Padding="0"
+                    Margin="10,160,10,10"
+                    Content="FTP Directory Root : "
+                    Style="{StaticResource nameLabelStyle}"/>
+                <Label
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Height="25"
+                    VerticalContentAlignment="Center"
+                    Padding="0"
+                    Margin="125,160,0,0"
+                    Content="{Binding Path=SelectedDirectoryPath,Mode=OneWay}"
+                    Style="{StaticResource valueLabelStyle}"
+                    Width="230"
+                    ToolTip="{Binding Path=SelectedDirectoryPath,Mode=OneWay}"/>
+
+                <telerik:RadTreeView
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                    Margin="10,190,0,10"
+                    Width="345"
+                    BorderBrush="LightGray"
+                    BorderThickness="1"
+                    ItemsSource="{Binding Path=DirectoryCollection}"
+                    Name="directoryBrowserTreeView"
+                    IsLoadOnDemandEnabled="True"
+                    IsEnabled="{Binding Path=IsAlterationEnabled}"
+                    LoadOnDemand="directoryBrowserTreeView_LoadOnDemand"
+                    SelectedItem="{Binding Path=SelectedDirectory,Mode=TwoWay}">
+                    <telerik:RadTreeView.ItemTemplate>
+                        <HierarchicalDataTemplate
+                        ItemsSource="{Binding Path=SubDirectoryCollection}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                    Width="15" />
+                                    <ColumnDefinition
+                                    Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image
+                                Grid.Column="0"
+                                Source="{Binding Path=DirectoryIconPath}"
+                                Height="15"
+                                Width="15"
+                                Opacity="{Binding Path=Opacity}" />
+                                <TextBlock
+                                Margin="7,0,0,0"
+                                Grid.Column="1"
+                                Text="{Binding Path=DirectoryName}" />
+                            </Grid>
+                        </HierarchicalDataTemplate>
+                    </telerik:RadTreeView.ItemTemplate>
+                </telerik:RadTreeView>
+
+                <telerik:RadButton
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Width="130"
+                    Height="50"
+                    Content="{Binding Path=ControlButtonText,Mode=OneWay}"
+                    Margin="10"
+                    Command="{Binding Path=ControlServiceCommand,Mode=OneWay}"/>
+                
+                <Grid
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Height="100"
+                    Width="130"
+                    Margin="0,0,10,80">
+                    <Path 
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Data="M40.240109,47.294002C39.441779,47.294001 38.787999,47.960467 38.787998,48.7806 38.787999,49.600735 39.441779,50.266 40.240109,50.265999 41.044909,50.266 41.695999,49.600735 41.696,48.7806 41.695999,47.960467 41.044909,47.294001 40.240109,47.294002z M30.552198,47.047002C31.755343,47.047003 32.723998,48.021003 32.723999,49.218801 32.723998,50.422002 31.755343,51.392002 30.552198,51.392002 29.354454,51.392002 28.377999,50.422002 28.377999,49.218801 28.377999,48.021003 29.354454,47.047003 30.552198,47.047002z M22.601849,47.047002C23.802221,47.047003 24.770998,48.021003 24.770998,49.218801 24.770998,50.422002 23.802221,51.392002 22.601849,51.392002 21.401176,51.392002 20.429999,50.422002 20.429999,49.218801 20.429999,48.021003 21.401176,47.047003 22.601849,47.047002z M14.651199,47.047002C15.849144,47.047003 16.822998,48.021003 16.822998,49.218801 16.822998,50.422002 15.849144,51.392002 14.651199,51.392001 13.450853,51.392002 12.476999,50.422002 12.476999,49.218801 12.476999,48.021003 13.450853,47.047003 14.651199,47.047002z M37.475598,45.24L62.548788,45.24C63.284393,45.240002,63.881998,45.836558,63.881998,46.573528L63.881998,51.175573C63.881998,51.912545,63.284393,52.509002,62.548788,52.509002L37.475598,52.509002C36.737316,52.509002,36.140999,51.912545,36.140999,51.175573L36.140999,46.573528C36.140999,45.836558,36.737316,45.240002,37.475598,45.24z M14.6509,39.366002C15.848679,39.366003 16.82,40.33589 16.82,41.536351 16.82,42.736712 15.848679,43.708 14.6509,43.708 13.45072,43.708 12.476999,42.736712 12.476999,41.536351 12.476999,40.33589 13.45072,39.366003 14.6509,39.366002z M14.6509,31.411002C15.848679,31.411002 16.82,32.383758 16.82,33.584551 16.82,34.783943 15.848679,35.757999 14.6509,35.757999 13.45072,35.757999 12.476999,34.783943 12.476999,33.584551 12.476999,32.383758 13.45072,31.411002 14.6509,31.411002z M39.605688,26.771566C39.147433,26.771566,38.77768,27.137413,38.777679,27.591867L38.777679,39.810536C38.77768,40.261031,39.147433,40.629427,39.605688,40.629427L60.238867,40.629427C60.690573,40.629427,61.064375,40.261031,61.064375,39.810536L61.064375,27.591867C61.064375,27.137413,60.690573,26.771566,60.238867,26.771566z M38.305015,24.390001L61.378279,24.390001C62.483688,24.390001,63.381998,25.284523,63.381998,26.391319L63.381998,40.900324C63.381998,42.004412,62.483688,42.899003,61.378279,42.899003L38.305015,42.899003C37.198195,42.899003,36.304999,42.004412,36.304999,40.900324L36.304999,26.391319C36.304999,25.284523,37.198195,24.390001,38.305015,24.390001z M23.640848,22.903999C22.836122,22.903999 22.185,23.570465 22.185,24.3906 22.185,25.210735 22.836122,25.876001 23.640848,25.876001 24.440275,25.876001 25.093998,25.210735 25.093998,24.3906 25.093998,23.570465 24.440275,22.903999 23.640848,22.903999z M1.3332901,20.850002L26.405716,20.850002C27.142708,20.850002,27.738998,21.446293,27.738998,22.183382L27.738998,26.784719C27.738998,27.521811,27.142708,28.118002,26.405716,28.118002L1.3332901,28.118002C0.596241,28.118002,0,27.521811,0,26.784719L0,22.183382C0,21.446293,0.596241,20.850002,1.3332901,20.850002z M3.6430817,2.3814697C3.1899605,2.3814697,2.8174629,2.7473106,2.8174629,3.2016602L2.8174629,15.420502C2.8174629,15.871,3.1899605,16.2395,3.6430817,16.2395L24.275548,16.2395C24.733841,16.2395,25.103736,15.871,25.103736,15.420502L25.103736,3.2016602C25.103736,2.7473106,24.733841,2.3814697,24.275548,2.3814697z M2.5024681,0L25.575029,0C26.681812,0,27.575,0.89453125,27.575,2.0013428L27.575,16.510401C27.575,17.6145,26.681812,18.509001,25.575029,18.509001L2.5024681,18.509001C1.398304,18.509001,0.5,17.6145,0.5,16.510401L0.5,2.0013428C0.5,0.89453125,1.398304,0,2.5024681,0z" 
+                        Stretch="Uniform" 
+                        Fill="{Binding Path=ServerColor}"
+                        Height="100"
+                        Width="100"
+                        Margin="0,0,0,0" 
+                        RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <TransformGroup.Children>
+                                    <RotateTransform Angle="0" />
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </TransformGroup.Children>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Grid>
             </Grid>
+
             
             
-            
+
             <Grid
                 Grid.Row="3"
                 HorizontalAlignment="Stretch"
